@@ -25,18 +25,38 @@ function LeFeedbackView() {
     this.addView(mCopyright);
 
 
-    var mGithHub = new TextView();
-    mGithHub.setTextSize(12);
-    mGithHub.setTextColor(0xff757575);
-    mGithHub.setText("");
-    mGithHub.setGravity(Gravity.BOTTOM | Gravity.LEFT);
-    mGithHub.setPadding(1);
-    mGithHub.setOnClickListener(function() {
-       
-    });
+    this.onMeasure = function(widthMS, heightMS) {
+        var width = MeasureSpec.getSize(widthMS);
+        var height = MeasureSpec.getSize(heightMS);
 
-    this.addView(mGithHub);
+        mTitlebar.measure(widthMS, 0);
 
+        var contentWidth = width - this.PADDING * 2;
 
+        var copyrightWidth = contentWidth - 100 - this.PADDING;
+        mCopyright.measure(MeasureSpec.makeMeasureSpec(copyrightWidth, MeasureSpec.EXACTLY),
+            MeasureSpec.makeMeasureSpec( MeasureSpec.EXACTLY, MeasureSpec.EXACTLY));
+   
+        this.setMeasuredDimension(width, height);
+    }
+
+    this.onLayout = function(x, y) {
+        var offsetX = 0;
+        var offsetY = 0;
+        mTitlebar.layout(offsetX, offsetY);
+
+        offsetX = this.PADDING;
+        offsetY += mTitlebar.getMeasuredHeight() + this.VPADDING;
+
+        offsetY +=  this.VPADDING;
+
+        offsetX = this.getMeasuredWidth() - this.PADDING ;
+
+        offsetX = this.PADDING;
+        offsetY -= 16;
+        mCopyright.layout(offsetX, offsetY);
+
+    }
+    
 
 }
