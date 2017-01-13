@@ -17,7 +17,7 @@ function LeFeedbackView() {
     this.addView(mTitlebar);
 
     var mCopyright = new TextView();
-    mCopyright.setTextSize(66);
+    mCopyright.setTextSize(20);
     mCopyright.setTextColor(0xff757575);
     mCopyright.setText("就是不告诉你，我的信息");
     mCopyright.setGravity(Gravity.BOTTOM | Gravity.LEFT);
