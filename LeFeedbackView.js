@@ -39,43 +39,4 @@ function LeFeedbackView() {
 
 
 
-    this.onMeasure = function(widthMS, heightMS) {
-        var width = MeasureSpec.getSize(widthMS);
-        var height = MeasureSpec.getSize(heightMS);
-
-        mTitlebar.measure(widthMS, 0);
-
-        var contentWidth = width - this.PADDING * 2;
-
-        var copyrightWidth = contentWidth - 100 - this.PADDING;
-        mCopyright.measure(MeasureSpec.makeMeasureSpec(copyrightWidth, MeasureSpec.EXACTLY),
-            MeasureSpec.makeMeasureSpec(66, MeasureSpec.EXACTLY));
-
-        mGithHub.measure(MeasureSpec.makeMeasureSpec(copyrightWidth, MeasureSpec.EXACTLY),
-            MeasureSpec.makeMeasureSpec(36, MeasureSpec.EXACTLY));
-
-
-        this.setMeasuredDimension(width, height);
-    }
-
-    this.onLayout = function(x, y) {
-        var offsetX = 0;
-        var offsetY = 0;
-        mTitlebar.layout(offsetX, offsetY);
-
-        offsetX = this.PADDING;
-        offsetY += mTitlebar.getMeasuredHeight() + this.VPADDING;
-
-        offsetY +=  this.VPADDING;
-
-        offsetX = this.getMeasuredWidth() - this.PADDING ;
-
-        offsetX = this.PADDING;
-        offsetY -= 16;
-        mCopyright.layout(offsetX, offsetY);
-
-
-        offsetY = mCopyright.getMeasuredHeight() + this.PADDING  + this.VPADDING+ this.VPADDING+ this.VPADDING+ this.VPADDING;
-        mGithHub.layout(offsetX,offsetY);
-    }
 }
