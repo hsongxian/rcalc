@@ -35,7 +35,7 @@ function LeFeedbackView() {
 
         var copyrightWidth = contentWidth - 100 - this.PADDING;
         mCopyright.measure(MeasureSpec.makeMeasureSpec(copyrightWidth, MeasureSpec.EXACTLY),
-            MeasureSpec.makeMeasureSpec( 88, MeasureSpec.EXACTLY));
+            MeasureSpec.makeMeasureSpec( 66, MeasureSpec.EXACTLY));
    
         this.setMeasuredDimension(width, height);
     }
