@@ -8,7 +8,9 @@
     <script src="LeFeedbackView.js"></script>
     <script src="LeFrameTitlebar.js"></script>
     <script src="Jndroid-min.js"></script>
-    <title>¼ÆËãÆ÷</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>äº²æˆšè®¡ç®—å™¨</title>
 </head>
 <meta charset="UTF-8">
 <body>
@@ -39,8 +41,8 @@
     mFeatureView.setVisibility(View.GONE);
 
     function showFullscreen(view, animationEndFunc) {
-        var state = {title : "·´À¡", url : "feedback"};
-        history.pushState(state, "·´À¡", "index.html");
+        var state = {title : "Â·Â´Ã€Â¡", url : "feedback"};
+        history.pushState(state, "Â·Â´Ã€Â¡", "index.html");
 
         mFeatureView.addView(view);
         mFeatureView.setVisibility(View.VISIBLE);
