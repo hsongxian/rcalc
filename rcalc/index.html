@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <script src="LeCalcView.js"></script>
+    <script src="LeCalcResult.js"></script>
+    <script src="LeCalcBtn.js"></script>
+    <script src="LeRelationshipApi.js"></script>
+    <script src="LeFeedbackView.js"></script>
+    <script src="LeFrameTitlebar.js"></script>
+    <script src="Jndroid-min.js"></script>
+    <title>¼ÆËãÆ÷</title>
+</head>
+<meta charset="UTF-8">
+<body>
+<script>
+
+    function setStatusbarColor() {
+        if (window.rh != undefined) {
+            rh._rsetStatusbarColor({color:0xff272727});
+            rh._rsetTranslucentStatus({status:true});
+        }
+    }
+    setStatusbarColor();
+    setTimeout(setStatusbarColor, 200);
+    setTimeout(setStatusbarColor, 400);
+
+    var mUnitWidth = document.body.clientWidth / 4;
+    var mUnitHeight = mUnitWidth;
+
+    var mRootView = new FrameLayout();
+    mRootView.setBackgroundColor(0xffffffff);
+    setContentView(mRootView);
+
+    var mCalView = new LeCalcView();
+    mRootView.addView(mCalView);
+
+    var mFeatureView = new FrameLayout();
+    mRootView.addView(mFeatureView);
+    mFeatureView.setVisibility(View.GONE);
+
+    function showFullscreen(view, animationEndFunc) {
+        var state = {title : "·´À¡", url : "feedback"};
+        history.pushState(state, "·´À¡", "index.html");
+
+        mFeatureView.addView(view);
+        mFeatureView.setVisibility(View.VISIBLE);
+
+        var translate = new TranslateAnimation(screen.width, 0, 0, 0);
+        translate.setDuration(300);
+        translate.setInterpolator(Interpolator.EASE_IN);
+        translate.setAnimationEndListener(animationEndFunc);
+
+        mFeatureView.startAnimation(translate);
+    }
+
+    function exitFullscreen() {
+        var translate = new TranslateAnimation(0, screen.width, 0, 0);
+        translate.setDuration(300);
+        mFeatureView.setAnimation(translate);
+        translate.setAnimationEndListener(function() {
+            mFeatureView.removeAllViews();
+            mFeatureView.setVisibility(View.GONE);
+        });
+        translate.start();
+    }
+
+    window.onpopstate = function (e) {
+        if (e.state == null) {
+            if (mFeatureView.getVisibility() == View.VISIBLE) {
+                exitFullscreen();
+            }
+        }
+    };
+</script>
+<script type='text/javascript'>
+    (function() {
+        var c = document.createElement('script');
+        c.type = 'text/javascript';
+        c.async = true;
+        c.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'www.clicki.cn/boot/51903';
+        var h = document.getElementsByTagName('script')[0];
+        h.parentNode.insertBefore(c, h);
+    })();
+</script>
+</body>
+</html>
